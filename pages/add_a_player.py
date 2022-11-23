@@ -12,8 +12,25 @@ class AddAPlayer(BasePage):
     main_position_field_xpath = "//*[@name='mainPosition']"
     submit_button_xpath = "//*/div[3]/button[1]"
     expected_position = "goalkeeper"
+    second_position_field_xpath = "//*[@name='secondPosition']"
+    add_language_button_xpath = "//*/div[15]//span[1]"
+    languages_field_xpath = "//*[@name = 'languages[0]']"
+    clear_button_xpath = "//*/button[2]/span[1]"
+    phone_field_xpath = "//*[@name='phone']"
+    weight_field_xpath = "//*[@name='weight']"
+    height_field_xpath = "//*[@name='height']"
+    leg_droplist_xpath = "//*[@id='mui-component-select-leg']"
+    right_leg_xpath = "//li[1]"
+    club_field_xpath = "//*[@name='club']"
+    level_field_xpath = "//*[@name='level']"
+    district_droplist_xpath = "//*[@id='mui-component-select-district']"
+    opole_xpath = "//li[8]"
+    achievements_field_xpath = "//*[@name='achievements']"
+    add_link_to_youtube_button_xpath = "//div[19]/button"
+    youtube_field_xpath = "//div[19]//input"
+
     def click_on_the_add_player_button(self):
-        time.sleep(5)
+        self.wait_for_element_to_be_clickable(self.add_player_button_xpath)
         self.click_on_the_element(self.add_player_button_xpath)
 
     def title_of_page(self):
@@ -34,5 +51,61 @@ class AddAPlayer(BasePage):
 
 
     def click_on_the_submit_button(self):
-        time.sleep(5)
+        self.wait_for_element_to_be_clickable(self.submit_button_xpath)
         self.click_on_the_element(self.submit_button_xpath)
+
+
+    def type_in_second_position(self, second_position):
+        self.field_send_keys(self.second_position_field_xpath, second_position)
+
+    def click_on_the_add_language_button(self):
+        self.wait_for_visibility_of_element_located(self.add_language_button_xpath)
+        self.click_on_the_element(self.add_language_button_xpath)
+
+    def type_in_language_name(self, language):
+        self.field_send_keys(self.languages_field_xpath, language)
+
+    def click_on_the_clear_button(self):
+        self.wait_for_element_to_be_clickable(self.clear_button_xpath)
+        self.click_on_the_element(self.clear_button_xpath)
+
+    def type_in_phone(self, phone):
+        self.field_send_keys(self.phone_field_xpath, phone)
+
+    def type_in_weight(self, weight):
+        self.field_send_keys(self.weight_field_xpath, weight)
+
+    def type_in_height(self, height):
+        self.field_send_keys(self.height_field_xpath, height)
+
+    def type_in_club(self, club):
+        self.field_send_keys(self.club_field_xpath, club)
+
+    def type_in_achievements(self, achievements):
+        self.field_send_keys(self.achievements_field_xpath, achievements)
+
+    def type_in_level(self, level):
+        self.field_send_keys(self.level_field_xpath, level)
+
+    def add_link(self, youtube):
+        self.field_send_keys(self.youtube_field_xpath, youtube)
+
+    def click_on_the_leg_button(self):
+        self.wait_for_element_to_be_clickable(self.leg_droplist_xpath)
+        self.click_on_the_element(self.leg_droplist_xpath)
+
+    def click_on_the_right_leg_button(self):
+        self.wait_for_element_to_be_clickable(self.right_leg_xpath)
+        self.click_on_the_element(self.right_leg_xpath)
+
+    def click_on_the_add_youtube_button(self):
+        self.wait_for_element_to_be_clickable(self.add_link_to_youtube_button_xpath)
+        self.click_on_the_element(self.add_link_to_youtube_button_xpath)
+
+    def click_on_district_button(self):
+        self.wait_for_element_to_be_clickable(self.district_droplist_xpath)
+        self.click_on_the_element(self.district_droplist_xpath)
+
+    def click_on_the_opole_button(self):
+        self.wait_for_element_to_be_clickable(self.opole_xpath)
+        self.click_on_the_element(self.opole_xpath)

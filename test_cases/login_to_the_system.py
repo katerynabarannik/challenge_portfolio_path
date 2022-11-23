@@ -8,6 +8,7 @@ from pages.login_page import LoginPage
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 
 
+
 class TestLoginPage(unittest.TestCase):
 
     @classmethod
@@ -28,6 +29,21 @@ class TestLoginPage(unittest.TestCase):
         dashboard_page = Dashboard(self.driver)
         dashboard_page.title_of_page()
         time.sleep(5)
+
+    def test_login_to_the_system_with_empty_fields(self):
+        user_login = LoginPage(self.driver)
+        user_login.click_on_the_sign_in_button()
+        self.driver.implicitly_wait(10)
+        self.driver.save_screenshot('D:\TC_6.png')
+
+    def test_login_to_the_system_with_invalid_password(self):
+        user_login = LoginPage(self.driver)
+        user_login.type_in_email('user01@getnada.com')
+        user_login.type_in_password('Rest')
+        user_login.click_on_the_sign_in_button()
+        self.driver.save_screenshot('D:\TC_7.png')
+        time.sleep(5)
+
 
     @classmethod
     def tearDown(self):

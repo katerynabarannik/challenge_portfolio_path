@@ -17,10 +17,12 @@ class Dashboard(BasePage):
     polski_field_xpath = "//*[text()='Polski']"
     shortcuts_field_xpath = "//*[text()='Shortcuts']"
     matches_count_field_xpath = "//*//div[2]/div[2]/div"
+    add_player_button_xpath = "//*/div[2]//button/span[1]"
+
     def title_of_page(self):
-        time.sleep(4)
-        time.sleep(5)
+        self.wait_for_element_to_be_clickable(self.players_field_xpath)
         assert self.get_page_title(self.dashboard_url) == self.expected_title
+
 
 
 
