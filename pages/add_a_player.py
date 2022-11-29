@@ -21,6 +21,7 @@ class AddAPlayer(BasePage):
     height_field_xpath = "//*[@name='height']"
     leg_droplist_xpath = "//*[@id='mui-component-select-leg']"
     right_leg_xpath = "//li[1]"
+    left_leg_xpath = "//li[2]"
     club_field_xpath = "//*[@name='club']"
     level_field_xpath = "//*[@name='level']"
     district_droplist_xpath = "//*[@id='mui-component-select-district']"
@@ -90,13 +91,17 @@ class AddAPlayer(BasePage):
     def add_link(self, youtube):
         self.field_send_keys(self.youtube_field_xpath, youtube)
 
-    def click_on_the_leg_button(self):
+    def select_leg(self, leg):
         self.wait_for_element_to_be_clickable(self.leg_droplist_xpath)
         self.click_on_the_element(self.leg_droplist_xpath)
+        if leg == "right":
+            self.wait_for_element_to_be_clickable(self.right_leg_xpath)
+            self.click_on_the_element(self.right_leg_xpath)
+        else:
+            self.wait_for_element_to_be_clickable(self.left_leg_xpath)
+            self.click_on_the_element(self.left_leg_xpath)
 
-    def click_on_the_right_leg_button(self):
-        self.wait_for_element_to_be_clickable(self.right_leg_xpath)
-        self.click_on_the_element(self.right_leg_xpath)
+
 
     def click_on_the_add_youtube_button(self):
         self.wait_for_element_to_be_clickable(self.add_link_to_youtube_button_xpath)

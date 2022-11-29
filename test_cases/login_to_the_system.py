@@ -44,6 +44,15 @@ class TestLoginPage(unittest.TestCase):
         self.driver.save_screenshot('D:\TC_7.png')
         time.sleep(5)
 
+    def test_sign_in(self):
+        user_login = LoginPage(self.driver)
+        user_login.sign_in_to_the_system()
+
+    def test_change_language(self):
+        user_login = LoginPage(self.driver)
+        user_login.switch_language("Polish")
+        user_login.check_language_is_switched()
+        time.sleep(5)
 
     @classmethod
     def tearDown(self):
