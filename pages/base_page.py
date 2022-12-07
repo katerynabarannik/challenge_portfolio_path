@@ -45,4 +45,3 @@ class BasePage():
         element = wait.until(EC.visibility_of_element_located((locator_type, locator)))
         time.sleep(3)
 
-

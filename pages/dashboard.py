@@ -5,7 +5,7 @@ from pages.base_page import BasePage
 
 class Dashboard(BasePage):
     expected_title = 'Scouts panel'
-    dashboard_url = 'https://scouts-test.futbolkolektyw.pl/'
+    dashboard_url = 'https://scouts.futbolkolektyw.pl/'
     dev_team_contact_hyperlink_xpath = "//a[@href='https://app.slack.com/client/T3X4CAKNU/C3XTEGXB6']"
     players_field_xpath = "//*[text()='Players']"
     image_xpath = "//*[@title='Logo Scouts Panel']"
@@ -18,11 +18,19 @@ class Dashboard(BasePage):
     shortcuts_field_xpath = "//*[text()='Shortcuts']"
     matches_count_field_xpath = "//*//div[2]/div[2]/div"
     add_player_button_xpath = "//*/div[2]//button/span[1]"
-
+    last_created_match_xpath = "//div[3]//a[3]/button"
     def title_of_page(self):
         self.wait_for_element_to_be_clickable(self.players_field_xpath)
         assert self.get_page_title(self.dashboard_url) == self.expected_title
 
+    def wait_for_url_to_appear(self):
+        url = ""
+        while url == "":
+            self.driver.get('https://scouts.futbolkolektyw.pl/en')
+            self.wait_for_visibility_of_element_located(self.add_player_button_xpath)
+            break
 
-
+    def click_on_last_created_match_link(self):
+        self.wait_for_element_to_be_clickable(self.last_created_match_xpath)
+        self.click_on_the_element(self.last_created_match_xpath)
 

@@ -4,7 +4,9 @@ import unittest
 from selenium import webdriver
 
 from pages.add_a_player import AddAPlayer
+from pages.dashboard import Dashboard
 from pages.login_page import LoginPage
+from pages.add_a_match_form import AddAMatch
 
 from utils.settings import DRIVER_PATH, IMPLICITLY_WAIT
 
@@ -15,7 +17,7 @@ class TestAddAPlayer(unittest.TestCase):
     def setUp(self):
         os.chmod(DRIVER_PATH, 755)
         self.driver = webdriver.Chrome(executable_path=DRIVER_PATH)
-        self.driver.get('https://scouts-test.futbolkolektyw.pl/en')
+        self.driver.get('https://scouts.futbolkolektyw.pl/en/')
         self.driver.fullscreen_window()
         self.driver.implicitly_wait(IMPLICITLY_WAIT)
 
@@ -48,7 +50,7 @@ class TestAddAPlayer(unittest.TestCase):
         add_a_player_page.title_of_page()
 
 
-    def test_adding_player_with_valid_data_in_required_fields(self):
+    def test_adding_player_with_filling_only_required_fields(self):
         user_login = LoginPage(self.driver)
         user_login.sign_in_to_the_system()
         add_a_player_page = AddAPlayer(self.driver)
@@ -60,7 +62,6 @@ class TestAddAPlayer(unittest.TestCase):
         add_a_player_page.click_on_the_submit_button()
         self.driver.implicitly_wait(10)
         self.driver.save_screenshot('D:\TC_1.png')
-
 
     def test_adding_player_with_empty_required_field(self):
         user_login = LoginPage(self.driver)
@@ -92,6 +93,19 @@ class TestAddAPlayer(unittest.TestCase):
         add_a_player_page.click_on_the_submit_button()
         self.driver.implicitly_wait(10)
         self.driver.save_screenshot('D:\TC_4.png')
+        add_a_player_page.check_required_message_is_visible()
+
+    def test_open_add_match_form(self):
+        user_login = LoginPage(self.driver)
+        user_login.sign_in_to_the_system()
+        dashboard_page = Dashboard(self.driver)
+        dashboard_page.click_on_last_created_match_link()
+        add_match_page = AddAMatch(self.driver)
+        add_match_page.click_on_matches_button()
+        add_match_page.click_on_the_add_match_button()
+        self.driver.implicitly_wait(10)
+        self.driver.save_screenshot('D:\TC_8.png')
+
 
     @classmethod
     def tearDown(self):
