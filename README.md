@@ -44,4 +44,4 @@ I am really excited to start my learning path in Automation!
         </ol>
 </ul>
 
-#### *P.s. I hope i understood it correctly :)*
+####  *:)*
